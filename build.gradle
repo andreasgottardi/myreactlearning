@@ -1,0 +1,18 @@
+ext {
+	reactvers = '16.13.1'
+	buildDir = 'js'
+}
+
+task downloadFile {
+	doLast {
+		def f = new File('js/react.production.min.js')
+		if (!f.exists()) {
+			new URL('https://unpkg.com/react@'+reactvers+'/umd/react.production.min.js').withInputStream{ i -> f.withOutputStream{ it << i }}
+		}
+
+		f = new File('js/react-dom.production.min.js')
+		if (!f.exists()) {
+			new URL('https://unpkg.com/react-dom@'+reactvers+'/umd/react-dom.production.min.js').withInputStream{ i -> f.withOutputStream{ it << i }}
+		}
+	}
+}
