@@ -19,3 +19,11 @@ task downloadReact {
 		}
 	}
 }
+
+task run {
+	group = 'React'
+	description = 'Opens the example'
+	doLast {
+		java.awt.Desktop.desktop.browse new File(project.projectDir.toString() + '\\src\\index.html').toURI()
+	}
+}
