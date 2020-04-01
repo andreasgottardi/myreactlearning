@@ -12,10 +12,17 @@
 <body>
 	<div id="global"></div>
 	<script type="text/javascript">
+		
+		function handleClick(e) {
+			e.preventDefault();
+			console.log('The link was clicked.');
+		}
+
 		const list =
 			React.createElement('div', {id: 'mytest', class: 'formatting1'}, [
 					React.createElement('h1', {}, 'My favorite ice cream flavors'),
-					React.createElement('p', {}, 'bla')
+					React.createElement('p', {}, 'bla'),
+					React.createElement('a', {href: '#', onClick: this.handleClick.bind(this)}, 'Click me')
 				]
 			);
 
