@@ -11,6 +11,7 @@
 
 <body>
 	<div id="global"></div>
+	<div id="content"></div>
 	<script type="text/javascript">
 		
 		function handleClick() {
@@ -19,6 +20,7 @@
 
 		function handleInput(){
 			console.log('Data added: ' + document.getElementById('myinputfield').value);
+			ReactDOM.render(document.getElementById('myinputfield').value, document.getElementById('content'));
 		}
 
 		const list =
