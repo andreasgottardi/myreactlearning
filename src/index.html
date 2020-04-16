@@ -11,25 +11,43 @@
 
 <body>
 	<div id="global"></div>
-	<div id="content"></div>
 	<script type="text/javascript">
-		
+		const data = [
+			{
+				id: 1,
+				name: "User a"
+			}, {
+				id: 2,
+				name: "User a"
+			}, {
+				id: 3,
+				name: "User b"
+			}, {
+				id: 4,
+				name: "User b"
+			},
+		];
+
 		function handleClick() {
 			console.log('The link was clicked.');
 		}
 
-		function handleInput(){
+		function handleInput() {
 			console.log('Data added: ' + document.getElementById('myinputfield').value);
 			ReactDOM.render(document.getElementById('myinputfield').value, document.getElementById('content'));
 		}
 
 		const list =
-			React.createElement('div', {id: 'mytest', class: 'formatting1'}, [
-					React.createElement('h1', {}, 'My favorite ice cream flavors'),
-					React.createElement('p', {}, 'bla'),
-					React.createElement('a', {href: '#', onClick: this.handleClick.bind()}, 'Click me'),
-					React.createElement('input', {id: 'myinputfield', onChange: this.handleInput.bind()})
-				]
+			React.createElement('div', { id: 'mytest', class: 'formatting1' }, [
+				React.createElement('h1', {}, 'My react learning example'),
+				React.createElement('a', { href: '#', onClick: this.handleClick.bind() }, 'Click me and check to console for output.'),
+				React.createElement('br'),
+				React.createElement('p', {}, 'The text inserted into the field will appear after the input field...'),
+				React.createElement('input', { id: 'myinputfield', onChange: this.handleInput.bind() }),
+				React.createElement('br'),
+				React.createElement('br'),
+				React.createElement('div', {id: 'content'})
+			]
 			);
 
 		ReactDOM.render(
