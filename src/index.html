@@ -13,28 +13,35 @@
 	<div id="global"></div>
 	<script type="text/javascript">
 		const data = [
-			{
-				id: 1,
-				name: "User a"
-			}, {
-				id: 2,
-				name: "User a"
-			}, {
-				id: 3,
-				name: "User b"
-			}, {
-				id: 4,
-				name: "User b"
-			},
+			"Siri",
+			"Alexa",
+			"Google",
+			"Facebook",
+			"Twitter",
+			"Linkedin",
+			"Sinkedin"
 		];
+		
+		var searchterm = "";
 
 		function handleClick() {
 			console.log('The link was clicked.');
 		}
 
 		function handleInput() {
-			console.log('Data added: ' + document.getElementById('myinputfield').value);
-			ReactDOM.render(document.getElementById('myinputfield').value, document.getElementById('content'));
+			searchterm = document.getElementById('myinputfield').value;
+			const results = data.filter(person =>
+				person.toLowerCase().includes(searchterm)
+			);
+			ReactDOM.render(
+				React.createElement("ul", null,
+					results.map(
+						function(listValue){
+							return React.createElement("li", null, listValue);
+						}
+					)
+				), document.getElementById('content')
+			);
 		}
 
 		const list =
