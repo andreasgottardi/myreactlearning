@@ -12,14 +12,18 @@
 <body>
 	<div id="global"></div>
 	<script type="text/javascript">
+		
 		const data = [
-			"Siri",
-			"Alexa",
-			"Google",
-			"Facebook",
-			"Twitter",
-			"Linkedin",
-			"Sinkedin"
+			{"firstname": "Heather", "surname": "Nairn"},
+			{"firstname": "Antonio", "surname": "Mcguire"},
+			{"firstname": "Carl", "surname": "Cunningham"},
+			{"firstname": "Matias", "surname": "Akhtar"},
+			{"firstname": "Lorelei", "surname": "Mcculloch"},
+			{"firstname": "Darrel", "surname": "Hensley"},
+			{"firstname": "Braydon", "surname": "Yu"},
+			{"firstname": "Kiana", "surname": "Combs"},
+			{"firstname": "Oakley", "surname": "Valencia"},
+			{"firstname": "Constance", "surname": "Klein"}
 		];
 		
 		var searchterm = "";
@@ -28,34 +32,32 @@
 			console.log('The link was clicked.');
 		}
 
-		function handleInput() {
-			searchterm = document.getElementById('myinputfield').value;
-			const results = data.filter(person =>
-				person.toLowerCase().includes(searchterm)
-			);
-			ReactDOM.render(
-				React.createElement("ul", null,
-					results.map(
-						function(listValue){
-							return React.createElement("li", null, listValue);
-						}
-					)
-				), document.getElementById('content')
-			);
+		function generateResult(localdata){
+			return React.createElement("ul", null,
+				localdata.map(
+							function(listValue){
+								return React.createElement("li", null, listValue.firstname + " " + listValue.surname);
+							}
+						)
+					);
 		}
 
-		const list =
-			React.createElement('div', { id: 'mytest', class: 'formatting1' }, [
-				React.createElement('h1', {}, 'My react learning example'),
-				React.createElement('a', { href: '#', onClick: this.handleClick.bind() }, 'Click me and check to console for output.'),
-				React.createElement('br'),
-				React.createElement('p', {}, 'The text inserted into the field will appear after the input field...'),
-				React.createElement('input', { id: 'myinputfield', onChange: this.handleInput.bind() }),
-				React.createElement('br'),
-				React.createElement('br'),
-				React.createElement('div', {id: 'content'})
-			]
+		function handleInput() {
+			searchterm = document.getElementById('myinputfield').value.toLowerCase();
+			const results = data.filter(person =>
+				person.surname.toLowerCase().includes(searchterm) || person.firstname.toLowerCase().includes(searchterm)
 			);
+			ReactDOM.render(generateResult(results), document.getElementById('content'));
+		}
+
+		const list = React.createElement('div', { id: 'mytest', class: 'formatting1' }, [
+				React.createElement('h1', {}, 'My react learning example'),
+				React.createElement('input', { id: 'myinputfield', onChange: this.handleInput.bind() }),
+				React.createElement('div', {id: 'content'},
+				generateResult(data)
+				)
+			]
+		);
 
 		ReactDOM.render(
 			list,
